@@ -1,0 +1,195 @@
+Los modelos son reprecentaciones de las diferentes tablas de las bases de datos. A partir de un controlador 
+este interactua con la basa de datos.
+Entonces el controlador hace de nexos en entre la vista y el modelo (base de datos) y luego da una respuesta al usiario.
+
+Creacion de un repositorio en GitHub:
+-La opcion de "Add  a README file" conviene cierta descripcion del proyecto.
+-La pccion Add.gitignore: son los archivos que debe ignorar. Seleccion con el lenguaje que voy a trabajar.
+-Eligo una licencia MIT por defecto. Esto es mas para que mi codigo se manipule de diferente manera.
+(para borrar un repositorio se tiene que ir a Settings y dirigirse hasta la ultima parte de las opciones)
+
+----Clonar repositorio:
+Voy a el boton verde "code" de mi cuenta de de GitHub y copio la direccion de mi repositorio con los 3 archivos que se me creo en el repositorio y lo copio en una 
+carpeta de mi consola. En otras palabras lo que se hizo en clonar el repositorio en mi consola.
+- Ahora voy a entrar a la carpate en donde clone mi repositorio a travez del cmd y con "git status" me mostrara el 
+estado de la rama actual en donde estoy trabajndo.
+
+----Creacion de "ramas" del ropositorio, lo cual permitira trabjar de forma mas ordenada a la hora de realizar el proyecton en grupo. 
+Las ramas son diferentes versiones del codigo, uno de ellos es el que se va a estar realmente ejecutandose para el usuaro final y 
+el otro es aquel en el que estaremos realizando cambios, que pueden funcionar o no. 
+-Entonces me dirijo a la opcion de "main" o "master" y creo otra rama dandole el nombre apropiado en este caso lo llamare "develop" 
+estonces de estas forma todos los cambios realizados iran a parar a la rama develop. 
+- Para que los cambios vayan a la rama que cree, debo ir desde la platafomra del git y cambiar el "Default" a la rama que cree.
+
+----Para ver las ramas que tengo en mi consola --> "git branch"
+
+----Para trae los cambios realizados en la git a mi consola hago --> "git fetch" y de esta manera se traera la nueva rama que cree.
+
+----Tmabien se puede uasr "git pull"  en el caul trae los cambios y me agrega a la rama actual en la que estoy parado en mi ordenador.
+Es decir si un compañero realiza cambios en esta rama que se creo, desde su ordenador y luego la sube al git, yo mediante 
+el "git pull" voy a traer todos esos cambios a mi rama en mi ordenador y se mezcle con todo lo que yo tengo en esa rama en mi ordenador. O tambien 
+escribiendo mas especificamente "git pull origin nombre_de_la_rama_que_quiero_traer_esos_cambios". 
+
+---- Ahora para moverme a la nueva rama que cree --> "git checkout develop" a mediante "git pull" traigo todos los 
+cambios que estoy realizando en esa rama, es decir la actualizo su estado actual. 
+
+---- Con  "git branch -a" me muestra las ramas que tengo en remoto.
+
+--- Se crea un "issue" por cada tarea que voy a hacer. Y yo como developer quiero trabajaar sobre ese issue, lo hare en mi rama base y luego 
+si todo esta okey la pasare a la rama main "la principal" en donde la applicaion estara en funcionamiento para el usuario. Tambien lo ideal 
+es crear una rama dentro de mi rama base para trabajar en ese issue en especial y una vez creado debo moverme a esa rama y trabajar de forma independiente.
+Una vez que todos esos cambios esta aprobado, voy a cargar todos esos cambios a mi rama base o principal que es el main.
+
+---- Instalacion de django en mi rama que cree --> "pip install django"
+- Crear mi archivo donde voy a ir guardando mis requerimientos --> con "pip freeze" esto lo que hace es producirme una salida por consola (en el cmd) de los 
+requerimientos que tengo en un formato que luego git puede agregarlo. 
+- Mediante --> "pip freeze > requirements.txt" lo que hace es mandarme todas esas salidas por consola a un archivo de texto llamado "requirements" 
+en la carpa en donde se encuentra mi repositorio clonado con mi entorno virtual.      
+
+$ $ $ El entorno virtual se usa para realizar applicaiones web con python $ $ $
+
+$ $ $ Git me meneja las versines, los cambios que voy haciendo, las ramas que voy creando etc. y me permite trabajar en mforma 
+conjunta $ $ $  
+
+$$$ pip es un gestor de paquetes (es un comando de python) "pip install" puede instalar diferentes paquetes, dentro del 
+entorno virtual. $$$
+
+--- Con "git add requirements.txt" agrego al archivo requirements.txt a la rama nueva que cree llamada issue_2. 
+Es decir, con git add lo que hago es agregar un archivo a una de las ramas creadas.
+--Lo que hace el "git add" es poner en una lista los archivos con los cambios que tenia hasta 
+ese punto. Pero este archivo solo esta en la nueva rama (issue_2) creada a partir de la original develop.
+Esto se comprueba que la pasar a la otro rama "develop" con el git checkout "develop" no se encuntra el archivo requirements.txt.   
+
+Con --> (git commit -m"se agrega un comentario que yo quiera") para confirmar los cambios realizados al GitHub y que estos mismos cambios fueron agregados con el comando "git add".
+
+--- Con (git push origin "nombre de la rama a la que quiero agregar los cambios") subo esos cambios nuevos a la rama.
+
+---- Ahora con "git push origin "nombre_de_la_nueva_rama" " voy a subir estos cambios que estan en esta nueva rama
+al GitHub. 
+
+--- Un "pull request" es una forma de pedir que mis cambios se integren en mi rama principal en GitHub. Que en este 
+caso es develop. Antas de elos la debo agregar un titulo a esos cambios y en la parte de Write escribo un comentario 
+en la que agrego algunos detalles de los nuevos cambios y mediante la seguiente notacion (Resolves #"numero del issue que estoy resolviendo") puedo dar referencia al issue que 
+estoy dando solucion. 
+--- Luego el que esta manejando el repositorio encontrara que hay un pull request para hacer el "Merge" que es 
+añadir esta solucion a la rama prmaria para mi caso es develop. En "file changed" se vera  el detalles de los cambios que se quiere agregar.
+Cuando Mergeo el issue desaparece que su solucion fue aceptado.
+
+----Ahora para traerme esos cambios desde mi repositorio remoto de GitHub a la rama develop que esta en mi consola, lo hago con 
+"git fetch" o "git pull" y a asi el archivo requirements.txt esta en la rama develop.  EL GIT PULL ACTUALIZA LA RAMA ACTUAL.
+
+---Para comenzar un proyecto en django se comienza de la siguiente manera "django-admin startprojec (nombre_del_proyecto)" si no le 
+coloco un punto al final del nombre me crea una carpeta con ese nombre del proyecto, en caso contrario 
+este se creara en la carpeta actual (el punto debe tener un especio). Y una vez logrado esto tendere disponible los archivos necesarios 
+para porder llevar a cabo mi proyecto, es decir, se creara la applicaion de django. El cual nos cree ciertos archivos 
+por defecto para inicializar la creacion de una aplicacion en django.
+
+## El archivo manage.py me sirve para ejecutar diferentes comandos y para correr el proyecto de forma local.
+Permite correr el servedir de forma local. Con "python manage.py runserver" podemos ver correr el servedor en donde se puede visualizar ese proyecto, el 
+proyecto en crudo.
+  
+La aplicacion de dejango con todos sus archivos esta en la rama issue_3. Verificar con git status.
+
+## En el archivo settings.py se guardan la configuaraciones del proyecto, con diferentes variablas y constantes, listas y otras configuraciones 
+que permite trabajar con la aplicacion dajngo para llavar a cabo la contruccion del proyecto.
+
+---Como creaer 3 archivos a partir del settings.py: Se creea un carpeta llamado settings y en el se crearan los 3 archivos
+de configuracion para los diferentes entornos "base de datos" "local" "produccion" y uno "development". Y luego en cada uno de los archivos voy a importar todas las 
+configuraciones que se tiene en el archivo base.py. Finalizado esto agrego los cambios a la rama issue_3 con git add y luego confirmo los cambios con commi -m.  
+
+--- Esto puedo llevar a cabo tambien en un solo archivo, dentro del settings.py --- 
+
+
+$ $ $Puedo agragar la forma (/*.py) en el que me agregara todos los archivos con esta extension.$ $ $
+
+--Para que me corra sin problema el servidor de mi aplicacion web debo indicar los cambios del archivo settings en 
+el archivo manage.py, una vez reaalizado estos cambios ya mi servidor funciona adecuadamente. 
+
+BLOG.settings --> asi esta indicando que settings es un archivo del tipo settings.py 
+BLOG.settings. --> asi ahora indica que settings es una carpeta al igual que BLOG con solo agregar un punto al final de la palabra settings (settings.).
+BLOG.settings.base --> ahora asi indico que el nuevo archivo base es de tipo base.py y es el archivo settings.py renombrado a base.py 
+
+--- Continuo ahora con la creacion de la carpeta de los archivos estaticos llamado "static", estos mismos pueden ser servidos desde un servicio externo, el cual se puede tratar del mismo django. 
+Debo crear el STATIC_ROOT en donde se guardara los archivos estaticos en el archivo base.py.
+os.path.join --> el os. es un comando que viene con python que lo que hace es permitirme tener acceso a certas funciones del sistema o ciertas cosas del sistema. Y esto me permite para este caso haca una union entre la ruta en donde esta manage.py y staticfiles. Esto se usa cuando se va a hacer el deploy, que es una de las configuraciones que se utilizan.
+
+
+--- Otra carpeta llamada media, en la misma se guardara los archivos que fueron creados por el usuario, se van creadno de forma dimanmica y junto con los que el usuario crea.
+
+## Creacioon de una aplicacion django "EJEMPPLPO"##
+Cada proyecto de dajngo se compone de diferentes apps o aplicaciones de django, las cuales estan en el archivo manage.py en la lista llamada INSTALED_APPS las cual trae una lista de aplicacion que trae por defecto.
+
+Puedo crear otro aplicacion nueva propio en django de la seguinte manera "python manage.py startapp --> este comando te permite crear la aplicaion (accounts) --> nombre de la aplicacion" esto me crea una carpeta con una serie de archivos. Esta aplicaion es para ls cuentas de usuarios. 
+Ahora en el archivo "models.py" lo que hare es extender las funcionalidades del usuario que viene por defecto con django. Luego esta aplicacion agrego a la lista INSTALED_APPS que esta en el archivo base.py y en la misma hacer lo siguiente: AUTH_USER_MODEL = 'accounts.User' la aplicacion "accounts" apunta a la clase "User" que eh creado. 
+
+Esto lo realizo de la siguiente manera: __from django.contrib.auth.models import AbstractUser__
+Luego creo una clase: 
+class User(AbstractUser):
+    """Extiendo el Usuario de django"""
+    pass        
+La cual tambien se identifica como modelo automatizado de usuarios en django.
+
+Django ya viene configurado para trabajar con el usuario que trae por defecto. Pero yo ahora le indico que use este modelo que yo acabo de crear "User".
+
+Luego en admin.py de la aplicacion "accounts" debo indicar que ahora se esta usando este modelo de usario que cree de la siguiente manera:
+(https://docs.djangoproject.com/en/4.0/topics/auth/customizing/) --> donde esta lo que permite registrar los modelos de usuarios que manejara django.
+
+### from django.contrib import admin
+    from django.contrib.auth.admin import UserAdmin
+    from .models import User
+
+    admin.site.register(User, UserAdmin) ###   
+
+admin.site --> Esto indica que django ya viene con un administrador integrado. 
+
+--Tema de la base de datos:
+Cuando uno hace cambios en los modelos, los modelos son reflejos de las tablas, se tiene que hacer que esos cambios en sus modelos se reflejen en su bases de datos. Para ello se debe crear unos archivos que describen esos cambios, de la siguiente forma escribiendo en la consola: python manage.py makemigrations. Entonces me crea esos cambios aplicando al modelo que yo acabo de crear "User" y estos cambios se encuentra en el archivo 0001_initial.py que esta dentro de la carpeta migrations. Ahora debo aplicar estos cambios a la base de datos de la siguiente manera: (python manage.py migrate).  
+
+$$ ahora mi aplicacion web corre sin error $$
+Todo esto sucedio por que django ya viene configurado para trabajar con un modelo y como nosostros estamos creando otro modelo. Entonces tenemos que indicar esos cambios en una base de datos, mediante unos archivos de migraciones mediante el comando --> python manage.py makemigrations) y para luego aplicar estos cambios a la base de datos se ejecuta el siguiente comando (python manage.py migrate) y ahi me crea las tablas en la base de datos. 
+Todo  esto es llavado a cabo en una base de dato por defecto sqlite3 en el archivo llamado db.sqlite3 donde aqui esta la tabla User con sus campos y otras tablas mas. 
+
+---Archivos necesarios para hacer el deploy:
+-El Procfile --> usado por Heroku. 
+- El install gunicorn --> es usado por el deploy para correr en el servidor.
+- El whitenoise --> es utilizado para trabajar con los archivos estaticos.
+- El runtime.txt --> nos permite elegir una version en python que se va a usar en Heroku.  
+
+$$ con git diff origin develop $$ --> puede ver los cambios en mi version aactual.
+$$ con git diff origin/develop $$ --> puedo ver los cambios que estan en develop en el GitHub pero no en el develop de la consola, por lo que me los debo trear todos con git pull. Por lo que no es suficiente con el "fetch" despues de que merge los cambios de la rama issue_3.   
+ 
+((EN EL TIEMPO 2:07 HS DEL VIDEO DEL 28/07 DA UN REPASO DE LA CONFIGURACION DE LA APLICAION DJANGO))
+
+ESCRITOS BASE DEL PROYECTO?
+
+######## LOS MODELOS SON CALSES PARA DJANGO Y LAS MISMAS SON UN REFLEJOS DE TEBLAS EN BASE DE DATOS #######
+
+.... Cuando aplique un cambio en los modelos, agregando otro campo por ejemplo, se debe crear otro archivo de migracion indicando esos cambios realizzados en los modelos.
+
+...El User esta heredando todo los campos que tiene por defecto el AbstractUser. Esto permitira que el usuario hago lo que esta permitidos en los campos en nuestro BLOG.
+
+
+-----CONFIGURACION DEL DJANGO CON HEROKU MEDIANTE EL DEPLOY: ------
+
+...Creo otra rama a partir de la rama base de mi consola (develop) para hacer la configuracion deploy del Heroku y luego subirlo al Heroku.
+
+.....Debo instalar pip isntall gunicorn es un paquete escrito en python que me permite ejecutar ciertas aplicacion hechas en python y permite utilizar el dyno que es un trabajador que puede ejecutar diferentes procesos.
+Se tiene que mandar al archico requirements.txt de la version con la que se esta trabajando con "gunicorn" una vez que este es instalado.
+
+..Con git pull traigo esos cambios a mi rama local que tengo en mi consola, es decir, la actualizo mi rama actual en la que estoy en mi consola (main).
+
+...En Heroku me permite crear 5 aplicaciones de forma gratuita. En la cual creare tanto para de development y produccion. Es una plataforma que permite tener online la aplicaciones que voy creando. 
+
+((EN EL TIEMPO 1:30 HS DEL VIDEO DEL 30/07 DA una explicacion de como creaer las Pipelines en Heroku))
+
+::: el pip install whitenoise permite hacer el deploy de los archivos estaticos una vez instalado hacer el pip freeze > requirements.txt ::::
+
+::: y agregar una linea en el archico base.py en MIDDLEWARE, en el segundo renglon: agrego el 'whitenoise.middleware.WhiteNoiseMiddleware'---> agrego esto como nuevo campo en la clase.  :: 
+
+.....El ALLOWED_HOSTS =['*.herokuapp.com'] me permitira que mi applicaion pueda correr en cualquier URL.... esto obtengo cuando logro el deploy de mi aplicaion. Resumiendo heroku me proporciona el URL de mi aplicacion. 
+A partir de ello ya se podran hacer los diversos cambios. 
+
+----- Es importante que este bien todas las configuaraciones al momento de correr la aplicaion------
+En este caso para que mi aplicaion comienza a correr, esta busca la configuracion que yo importe al archivo development.
+
+--- El wsgi.py funciona como el manage.py para el local para que funcione, pero para este caso 

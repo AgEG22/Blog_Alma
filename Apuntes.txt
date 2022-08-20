@@ -1,0 +1,76 @@
+...Que es pip:
+Es el manejador de paquetes de python, que permitira instalar paquetes o librerias en python, el cual nos permitira instalar todas las libreries que necesitemos de una forma sencilla y siempre trabajando desde la consola.
+
+... El virtualenv es una libreria que nos va permitir crear entornos vituales en python y que presenta todas las librerias que se utilizara en los entornos vituales, trabajando con python. 
+
+...Activar el entorno vitual significa que todo lo que se trabaje se trabajara dentro de ese entorno vitual. Por lo tanto todos los comandos de python y de pip se van a ejecutar dentro de este entorno. Lo cual cuando lo creo desde cero al entorno vitual no tengo ninguna libreria o paquete instalado, es como decir que se trata de un lugar de trabajo sin las herramientas necesarias para comenxar a trabajar, es un entorno totalmente deparado del general. Por lo que procedere a instalarlos las que crea necesarias. 
+
+...La ventaje que tiene de trabajar en entornos virtuales es que se puede trabajar en distintos proyectos en una misma consola y que estos proyectos se pueden trabajar con distintas librerias en diferentes entornos sin ninguana interferencia una con la otra.  
+
+#### debo escribir django==3.0 (una libreria escrita en python) que es la version mas nueva que queiro que instale en mi entorno ####
+
+##### con el comando "dir" puedo ver que carpetas nuevas hay en mi carpta actual, es decir, en la carpeta que estoy parado en mi cmd. ####### Las carpetas se ven con palabras solas, sin puntos al comienzo de la palabra ####
+
+#### Forma mas ordenada de hacer es tener la carpeta del entorno en la carpeta en donde se encuentra el proyecto ####
+
+#### para crear una carpeta en el cmd es con el comando "mkdir" ####
+
+#### Comando para comenzar a crear el proyecto "django -admin startprojec nombre_del_proyecto" #### 
+
+.... El archivo manage.py es el principal donde podemos ejecutar todos los comandos que ejecutemos en python, para levantar el proyecto, para crear usuarios y demas funcionalidades. Este siempre se ejecuta de forma local, es por eso que mi comfiguracion se encontrara en la carpeta settings. en el archivo local --> "settings.local" --> esto se cambia desde el archico manage.py.
+
+.... Los archivos wsgi.py y asgi.py, que son los que estan dentro de mi carpeta con mi proyecto, son los necesarios para hacer el deploy final de nuestro proyecto. Son usados para cuando se trabaja en produccion. 
+
+... Se craen carpetas como: apps(aplicaciones), medias, static y templates. Dentro de la carpeta de donde esta mi proyecto creare la carpeta Settings y en el se agregara el archivo settings.py (en el cual esta toda la configuracion de nuestro proyecto) y que el mismo sera copiado dentro en el archivo base.py.
+
+___Las 3 configuraciones basicas:
+
+.... La configuracion se separa cuando estamos trabajndo en forma local en nuestro proyecto y cuando nuestro proyecto 
+este en produccion final. Entonces por quue se busca trabajar de esta forma en dos archivos uno local.py y el otro produccion.py que me permitira correr la aplicaion en forma local, en donde yo le tengo que dar los cambios necesarios si corresponde y el otro cuando ya mi aplicacion es correindo en formqa de produccion final. 
+
+.... Cuando trabajamos en configuracion local, se tiene disponible una base de dato de prueba, un usuario de prueba, vamos a tener activado deiferentes opciones para hacer debvia y demas, cosas que al estar en produccion no va suceder.
+Pero tanto el local y el de produccion ambos van consumir lo que esta configurado en el archivo base.py, entonces el contenido de este archivo es indistintos para ambos.  
+
+....El comando import os --> lo que hace es importar los comandos del sistema operativo.
+
+....Nuestro proyecto en django va a funcionar con aplicaciones, donde cada aplicaion es un modulo lo mas independiente posible, de tal forma de modulizir nuestro proyecto. Cada vez que cremaos estas aplicaiones la tenemos que definir en el settings para que django sepa que una aplicaion que vamos a usar.
+
+....El templates son los html, es decir, que es lo que se va a visualizar. Lo que le debo decir ahi es que direccion va a estar almacemado todos mis templates, que es en la carpeta template. Para encontrar esa ruta -->> as.path.join(os.path.dirname(BASE_DIR),'template'), lo cual se traduce: como que el sistama operativo (os) que haga un join(relacione) en la carpeta que estoy actualmente (path.dirname(BASE_DIR)) y la carpate template.
+
+....La base de datos sqlite3 es mas liviano.
+
+..... Se debe indicar la dieccion de esa carpeta static en la configuracion del proyecto, de la siguente forma 
+---> STATICFILES_DIRS = (
+    os.path.join(os.path.dirname(BASE_DIR),'static'),
+    )
+Estos archivos estaticos son todos aquellos servidos por nosostros desde nuestro servidor: los logos, las imagenes que cargamos nosotros, los archivos javacripts los ccs. 
+
+..... Tambien se debe indicar la direccion de la carpeta media:
+---> MEDIA_URL ='/media/'
+     MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'media')
+Mientras que en las carpetas medias se van a guardar todas las imagenesque se guardan de forma dinamica, por ejemplo
+cuando lo sube un usuario que esta usando nuestra aplicacion. Nace de la interaccion de los usuarios. 
+
+... Como indique que mi manage.py se ejecute de forma local, entonces tengo que importar la configuaracion de mi aplicacion al archivo local.py ---> from .base import *, lo que significa que todo lo que esta en el archivo base lo importe al archivo local.py 
+
+....El runserver crea un servidor local para desarrollo, da ejecucion a mi aplicacion. 
+
+:::: El repositorio es una copia del codigo, en la que se esta trabajando, que la puede tener todos los integrantes delm grupo y asi poder realizar cambios a travez del Merge :::::::
+
+....El archivo gitignore lo que hace es que ignora las carpetas en el momento de consultar el estado "stattus" de mi rama actual en la quue estoy parado y no las suba al repositorio. 
+
+.... Con el GIT PUSH subo todos los cambios que esta en mi rama del mi consola al rapositorio del GitHub.
+
+.... Una vez que activo el entorno vitual vuelvo al archivo base en donde esta todo lo necesario para mi proyecto. 
+
+::::::: Haciendo el copiado del URL para el copiado de mi repositorio en mi consola agrego el token segido de @ para que luego al hacer el git push no me pida una contraseña y se suba automaticamente al GitHub :::::::::::
+
+::::: Cuando instalado pip install djando me da acceso al comando django -admin startprojec "Nomdbre del proyecto":::::::::::::::
+
+....Las aplcaiones que cree en mi proyecto son modulos que me permite manejar las cuentas, las ventas, los clientes, los vendedores, los post.......
+
+#### Se crea de la siguiente manera ---> "python manage.py startapp nombre_del_modulo" #####
+
+.... El archico models.py esta en cada aplicacion que yo cree en django.
+
+.... El archivo wsgi.py actua como el archivo manage.py, pero este es para el deploy...
