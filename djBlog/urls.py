@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include   
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls), # la urls del administrado de django.
     path('', include('home.urls')), #en el espacio vacio de las comillas puede ir una direccion como 'home/' la cual este tendra que ir tambien con la direccion de la aplicacion web para que arrenque el servidor ejemplo: http://127.0.0.1:8000/home/
                                     # la funcion include() lo que hace es buscarme la vista que quiero que renderice por medio de la ruta 'home.urls'.
 
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
+    static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
