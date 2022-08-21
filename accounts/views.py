@@ -1,8 +1,10 @@
+from hashlib import new
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from .forms import LoginForm 
-
+from django.contrib.auth.forms import UserCreationForm
+from .forms import SignUpForm
 
 def login_view(request):
     form = LoginForm() ## formulario para loguearse. 
@@ -27,5 +29,16 @@ def login_view(request):
 def logout_view(request):
     logout(request) 
     return redirect('index') #A donde queremos que se diriga una vez que se cierra sesion. 
+
+
+def registrar_usuario(request):
+    form = SignUpForm()
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            messages.success(request, f'Usuario {new_user.username} creado!')
+            return redirect('login')
+    return render(request, 'accounts/register.html', {'form': form}) ##Aqui FALTA
  
 
